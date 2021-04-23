@@ -1,9 +1,10 @@
-import time # 시간 측정용 import
-import sys
+import time # 시간 측정하기 위함
+import sys # recursion limit 방지하기 위함
 
 N100 = [i for i in range(100,0,-1)] # 100 99 98 ... 1
 N1000 = [i for i in range(1000,0,-1)] # 1000 999 998 ... 1
 N10000 = [i for i in range(10000,0,-1)] # 10000 9999 9998 ... 1
+exTime = [] # 실행시간 저장 배열
 
 # bubble sort
 def bubbleSort(arr, n): # arr은 입력 배열, n은 배열의 크기(element 수)
@@ -14,31 +15,9 @@ def bubbleSort(arr, n): # arr은 입력 배열, n은 배열의 크기(element �
     
     return arr # bubble sort한 배열 arr 반환
 
-print("bubble sort: ")
-
-# N100: bubble sort 출력 및 시간 측정
-start_time = time.time()
-# print("N100: ", end="")
+# print(N100, end="\n\n")
+# print("bubble sort: ")
 # print(bubbleSort(N100, len(N100)))
-bubbleSort(N100, len(N100)
-# end_bubble_100 = time.time() - start_time # bubble sort 실행 시간 for N100
-# print(time.time() - start_time)
-print(start_time)
-# print(time.time())
-
-# N1000: bubble sort 출력 및 시간 측정
-start_time = time.time()
-# print("N1000: ", end="")
-# print(bubbleSort(N1000, len(N1000)))
-bubbleSort(N1000, len(N1000))
-end_bubble_1000 = time.time() - start_time # bubble sort 실행 시간 for N1000
-
-# N10000: bubble sort 출력 및 시간 측정
-start_time = time.time()
-# print("N10000: ", end="")
-# print(bubbleSort(N10000, len(N10000)))
-bubbleSort(N10000, len(N10000))
-end_bubble_10000 = time.time() - start_time # bubble sort 실행 시간 for N10000
 
 
 # insertion sort
@@ -53,24 +32,9 @@ def insertionSort(arr, n): # arr은 입력 배열, n은 배열의 크기(element
     
     return arr # insertion sort한 배열 arr 반환
 
-# N100: insertion sort 출력 및 시간 측정
-start_time = time.time()
+# print(N100, end="\n\n")
+# print("insertion sort: ")
 # print(insertionSort(N100, len(N100)))
-insertionSort(N100, len(N100))
-end_insertion_100 = time.time() - start_time # insertion sort 실행 시간 for N100
-
-# N1000: insertion sort 출력 및 시간 측정
-start_time = time.time()
-# print(insertionSort(N1000, len(N1000)))
-insertionSort(N1000, len(N1000))
-end_insertion_1000 = time.time() - start_time # insertion sort 실행 시간 for N1000
-
-# N10000: insertion sort 출력 및 시간 측정
-start_time = time.time()
-sys.setrecursionlimit(10000)
-# print(insertionSort(N10000, len(N10000)))
-insertionSort(N10000, len(N10000))
-end_insertion_10000 = time.time() - start_time # insertion sort 실행 시간 for N10000
 
 
 # merge sort
@@ -89,35 +53,21 @@ def mergeSort(arr, n):
             l += 1 # 추가 후 +=1
         else: # 반대이면
             mergeArr.append(L2[r]) # 작은 쪽인 오른쪽 배열의 r번째 element 추가
-            h += 1 # 추가 후 +=1
+            r += 1 # 추가 후 +=1
     mergeArr += L1[l:] # 왼쪽 배열의 l번째부터 끝까지 (남은 element) 추가
     mergeArr += L2[r:] # 오른쪽 배열의 r번째부터 끝까지 (남은 element) 추가
 
     return mergeArr # merge sort한 배열 반환
 
-# N100: merge sort 출력 및 시간 측정
-start_time = time.time()
+# print(N100, end="\n\n")
+# print("merge sort: ")
 # print(mergeSort(N100, len(N100)))
-mergeSort(N100, len(N100))
-end_merge_100 = time.time() - start_time # merge sort 실행 시간 for N100
-
-# N1000: merge sort 출력 및 시간 측정
-start_time = time.time()
-# print(mergeSort(N1000, len(N1000)))
-mergeSort(N1000, len(N1000))
-end_merge_1000 = time.time() - start_time # merge sort 실행 시간 for N1000
-
-# N10000: merge sort 출력 및 시간 측정
-start_time = time.time()
-# print(mergeSort(N10000, len(N10000)))
-mergeSort(N10000, len(N10000))
-end_merge_10000 = time.time() - start_time # merge sort 실행 시간 for N10000
 
 
 # radix sort
 def radixSort(arr, n):
     ten=1 # 자릿수 판단할 변수
-    while max(arr)>ten: # 배열의 최댓값이 ten보다 크면 반복
+    while max(arr)//ten > 0: # 배열의 최댓값의 ten의 자릿수가 0보다 크면 계속
         output = [0]*n # ten의 자릿수에 따라 sort 해서 저장할 배열
         count = [0]*10 # 자릿수는 0~9까지기 때문에 길이가 10인 배열 생성
         for i in range(n):
@@ -130,74 +80,36 @@ def radixSort(arr, n):
             count[j] -= 1 # 저장하고 쓰인 count[j]-=1
         for i in range(n):
             arr[i] = output[i] # arr배열에 ten자릿수를 sorting한 순서대로 저장
-        ten += 10 # 다음 자릿수
+        ten *= 10 # 다음 자릿수
     
     return arr # radix sort한 배열 반환
 
-# N100: radix sort 출력 및 시간 측정
-start_time = time.time()
+# print(N100, end="\n\n")
+# print("radix sort: ")
 # print(radixSort(N100, len(N100)))
-radixSort(N100, len(N100))
-end_radix_100 = time.time() - start_time # radix sort 실행 시간 for N100
-
-# N1000: radix sort 출력 및 시간 측정
-start_time = time.time()
-# print(radixSort(N1000, len(N1000)))
-radixSort(N1000, len(N1000))
-end_radix_1000 = time.time() - start_time # radix sort 실행 시간 for N1000
-
-# N10000: radix sort 출력 및 시간 측정
-start_time = time.time()
-# print(radixSort(N10000, len(N10000)))
-radixSort(N10000, len(N10000))
-end_radix_10000 = time.time() - start_time # radix sort 실행 시간 for N10000
 
 
 # quick sort
-def quickSort(arr, s, e):
-    def partition(arr, p, q):
-        pivot = arr[p] # arr배열의 start position을 pivot으로 두기
-        i = p # i = arr 배열의 첫원소 index
-        for j in range(p+1, q): # 처음+1 ~ 끝
-            if arr[j] <= pivot: # pivot 보다 작거나 같으면
-                i += 1 # i+=1 한 상태에서
-                arr[i], arr[j] = arr[j], arr[i] # arr[i]과 swap
-        arr[p], arr[i] = arr[i], arr[p] # pivot 원소를 이하인 쪽과 큰 쪽의 경계점 자리(i)로 swap
-
-        return i # pivot 자리 index 반환
-
-    if len(arr) <= 1:
+def quickSort(arr,n):
+    if n <= 1: # 배열 크기가 1보다 작으면 고대로 반환
         return arr
-    
-    if s < e:
-        q = partition(arr,s,e) # pivot 자리 index 구해서 q에 저장
-        quickSort(arr,s,q-1) # pivot 원소 이하인 쪽의 배열 quickSort
-        quickSort(arr,q+1,e) # pivot 원소보다 큰 쪽의 배열 quickSort
-    
-    return arr # quick sort한 배열 반환
+    pivot = arr[n // 2] # 중간값을 pivot으로
+    left, mid, right = [], [], []
+    for i in range(n):
+        if arr[i] < pivot: # pivot보다 작으면 left에
+            left.append(arr[i])
+        elif arr[i] > pivot: # pivot보다 크면 right에
+            right.append(arr[i])
+        else: # pivot이랑 같으면
+            mid.append(arr[i])
+    return quickSort(left,len(left)) + mid + quickSort(right,len(right)) # quickSort한 왼쪽 배열 + 중간 배열(pivot) + quickSort한 오른쪽 배열 => quick Sort된 배열
 
-# N100: quick sort 출력 및 시간 측정
-start_time = time.time()
-# print(quickSort(N100, 0, len(N100)))
-quickSort(N100, 0, len(N100))
-end_quick_100 = time.time() - start_time # quick sort 실행 시간 for N100
-
-# N1000: quick sort 출력 및 시간 측정
-start_time = time.time()
-# print(quickSort(N1000, 0, len(N1000)))
-quickSort(N1000, 0, len(N1000))
-end_quick_1000 = time.time() - start_time # quick sort 실행 시간 for N1000
-
-# N10000: quick sort 출력 및 시간 측정
-start_time = time.time()
-# print(quickSort(N10000, 0, len(N10000)))
-quickSort(N10000, 0, len(N10000))
-end_quick_10000 = time.time() - start_time # quick sort 실행 시간 for N10000
-
+# print(N100, end="\n\n")
+# print("quick sort: ")
+# print(quickSort(N100,len(N100)))
 
 # bucket sort
 def bucketSort(arr,n):
-
     B = [[] for _ in range(n)] # 초기화 된 B배열 생성 (create an array B of initiaaly empty buckets)
     for i in range(n):
         j = arr[i]*n // (max(arr)+1) 
@@ -208,45 +120,110 @@ def bucketSort(arr,n):
     
     return bucketArr
 
-# N100: bucket sort 출력 및 시간 측정
-start_time = time.time()
-# print(bucketSort(N100, len(N100)))
+# print(N100, end="\n\n")
+# print("bucket sort: ")
+# print(bucketSort(N100,len(N100)))
+
+
+# 실행 시간 측정
+
+# bubble sort
+start = time.time()
+bubbleSort(N100, len(N100))
+exTime.append(time.time()-start)
+
+start = time.time()
+bubbleSort(N1000, len(N1000))
+exTime.append(time.time()-start)
+
+start = time.time()
+bubbleSort(N10000, len(N10000))
+exTime.append(time.time()-start)
+
+# insertion sort
+start = time.time()
+insertionSort(N100, len(N100))
+exTime.append(time.time()-start)
+
+start = time.time()
+insertionSort(N1000, len(N1000))
+exTime.append(time.time()-start)
+
+start = time.time()
+insertionSort(N10000, len(N10000))
+exTime.append(time.time()-start)
+
+# marge sort
+start = time.time()
+mergeSort(N100, len(N100))
+exTime.append(time.time()-start)
+
+start = time.time()
+mergeSort(N1000, len(N1000))
+exTime.append(time.time()-start)
+
+start = time.time()
+sys.setrecursionlimit(10000)
+mergeSort(N10000, len(N10000))
+exTime.append(time.time()-start)
+
+# radix sort
+start = time.time()
+radixSort(N100, len(N100))
+exTime.append(time.time()-start)
+
+start = time.time()
+radixSort(N1000, len(N1000))
+exTime.append(time.time()-start)
+
+start = time.time()
+radixSort(N10000, len(N10000))
+exTime.append(time.time()-start)
+
+# quick sort
+start = time.time()
+quickSort(N100, len(N100))
+exTime.append(time.time()-start)
+
+start = time.time()
+quickSort(N1000, len(N1000))
+exTime.append(time.time()-start)
+
+start = time.time()
+sys.setrecursionlimit(10000)
+quickSort(N10000, len(N10000))
+exTime.append(time.time()-start)
+
+# bucket sort
+start = time.time()
 bucketSort(N100, len(N100))
-end_bucket_100 = time.time() - start_time # bucket sort 실행 시간 for N100
+exTime.append(time.time()-start)
 
-# N1000: bucket sort 출력 및 시간 측정
-start_time = time.time()
-# print(bucketSort(N1000, len(N1000)))
+start = time.time()
 bucketSort(N1000, len(N1000))
-end_bucket_1000 = time.time() - start_time # bucket sort 실행 시간 for N1000
+exTime.append(time.time()-start)
 
-# N10000: bucket sort 출력 및 시간 측정
-start_time = time.time()
-# print(bucketSort(N10000, len(N10000)))
+start = time.time()
 bucketSort(N10000, len(N10000))
-end_bucket_10000 = time.time() - start_time # bucket sort 실행 시간 for N10000
+exTime.append(time.time()-start)
 
+# size와 sort algorithm 이름 배열
+sort = ["[size]", "[bubble sort]", "[insertion sort]", "[merge sort]", "[radix sort]", "[quick sort]", "[bucket sort]"]
+for s in sort: # 가운데정렬로 size와 이름 정렬 
+    print(s.center(25), end="")
 
-# print(end_bubble_100)
-print(end_bubble_1000)
-print(end_bubble_10000)
+# row1: 크기가 100인 입력값의 실행시간 / row2: 크기가 1000인 입력값의 실행시간 / row3: 크기가 10000인 입력값의 실행시간
+row1 = [100, exTime[0], exTime[3], exTime[6], exTime[9], exTime[12], exTime[15]]
+row2 = [1000, exTime[1], exTime[4], exTime[7], exTime[10], exTime[13], exTime[16]]
+row3 = [10000, exTime[2], exTime[5], exTime[8], exTime[11], exTime[14], exTime[17]]
 
-print(end_insertion_100)
-print(end_insertion_1000)
-print(end_insertion_10000)
-
-print(end_merge_100)
-print(end_merge_1000)
-print(end_merge_10000)
-
-print(end_radix_100)
-print(end_radix_1000)
-print(end_radix_10000)
-
-print(end_quick_100)
-print(end_quick_1000)
-print(end_quick_10000)
-
-print(end_bucket_100)
-print(end_bucket_1000)
-print(end_bucket_10000)
+# 가운데 정렬로 size(크기)별로 실행시간 출력
+print()
+for r in row1:
+    print(str(r).center(25), end="")
+print()
+for r in row2:
+    print(str(r).center(25), end="")
+print()
+for r in row3:
+    print(str(r).center(25), end="")
