@@ -1,4 +1,4 @@
-import time # 시간 측정하기 위함
+import datetime # 시간 측정하기 위함
 import sys # recursion limit 방지하기 위함
 
 N100 = [i for i in range(100,0,-1)] # 100 99 98 ... 1
@@ -128,84 +128,84 @@ def bucketSort(arr,n):
 # 실행 시간 측정
 
 # bubble sort
-start = time.time()
+start = datetime.datetime.now() # sorting 전 시간 측정
 bubbleSort(N100, len(N100))
-exTime.append(time.time()-start)
+exTime.append(datetime.datetime.now()-start) # sorting 후 시간에서 초기 시간 빼기
 
-start = time.time()
+start = datetime.datetime.now()
 bubbleSort(N1000, len(N1000))
-exTime.append(time.time()-start)
+exTime.append(datetime.datetime.now()-start)
 
-start = time.time()
+start = datetime.datetime.now()
 bubbleSort(N10000, len(N10000))
-exTime.append(time.time()-start)
+exTime.append(datetime.datetime.now()-start)
 
 # insertion sort
-start = time.time()
+start = datetime.datetime.now()
 insertionSort(N100, len(N100))
-exTime.append(time.time()-start)
+exTime.append(datetime.datetime.now()-start)
 
-start = time.time()
+start = datetime.datetime.now()
 insertionSort(N1000, len(N1000))
-exTime.append(time.time()-start)
+exTime.append(datetime.datetime.now()-start)
 
-start = time.time()
+start = datetime.datetime.now()
 insertionSort(N10000, len(N10000))
-exTime.append(time.time()-start)
+exTime.append(datetime.datetime.now()-start)
 
 # marge sort
-start = time.time()
+start = datetime.datetime.now()
 mergeSort(N100, len(N100))
-exTime.append(time.time()-start)
+exTime.append(datetime.datetime.now()-start)
 
-start = time.time()
+start = datetime.datetime.now()
 mergeSort(N1000, len(N1000))
-exTime.append(time.time()-start)
+exTime.append(datetime.datetime.now()-start)
 
-start = time.time()
+start = datetime.datetime.now()
 sys.setrecursionlimit(10000)
 mergeSort(N10000, len(N10000))
-exTime.append(time.time()-start)
+exTime.append(datetime.datetime.now()-start)
 
 # radix sort
-start = time.time()
+start = datetime.datetime.now()
 radixSort(N100, len(N100))
-exTime.append(time.time()-start)
+exTime.append(datetime.datetime.now()-start)
 
-start = time.time()
+start = datetime.datetime.now()
 radixSort(N1000, len(N1000))
-exTime.append(time.time()-start)
+exTime.append(datetime.datetime.now()-start)
 
-start = time.time()
+start = datetime.datetime.now()
 radixSort(N10000, len(N10000))
-exTime.append(time.time()-start)
+exTime.append(datetime.datetime.now()-start)
 
 # quick sort
-start = time.time()
+start = datetime.datetime.now()
 quickSort(N100, len(N100))
-exTime.append(time.time()-start)
+exTime.append(datetime.datetime.now()-start)
 
-start = time.time()
+start = datetime.datetime.now()
 quickSort(N1000, len(N1000))
-exTime.append(time.time()-start)
+exTime.append(datetime.datetime.now()-start)
 
-start = time.time()
+start = datetime.datetime.now()
 sys.setrecursionlimit(10000)
 quickSort(N10000, len(N10000))
-exTime.append(time.time()-start)
+exTime.append(datetime.datetime.now()-start)
 
 # bucket sort
-start = time.time()
+start = datetime.datetime.now()
 bucketSort(N100, len(N100))
-exTime.append(time.time()-start)
+exTime.append(datetime.datetime.now()-start)
 
-start = time.time()
+start = datetime.datetime.now()
 bucketSort(N1000, len(N1000))
-exTime.append(time.time()-start)
+exTime.append(datetime.datetime.now()-start)
 
-start = time.time()
+start = datetime.datetime.now()
 bucketSort(N10000, len(N10000))
-exTime.append(time.time()-start)
+exTime.append(datetime.datetime.now()-start)
 
 # size와 sort algorithm 이름 배열
 sort = ["[size]", "[bubble sort]", "[insertion sort]", "[merge sort]", "[radix sort]", "[quick sort]", "[bucket sort]"]
